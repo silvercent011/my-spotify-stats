@@ -5,9 +5,8 @@ import { AlbumGrid } from "../components/AlbumGrid";
 import { Button } from "../components/Button";
 import { HomePage } from "../components/HomePage";
 
-
 import style from "../styles/Page.module.scss";
-import { UserCard } from "../components/UserCard";
+import { SideBar } from "../components/SideBar";
 
 const Home: NextPage = () => {
   const { data: session } = useSession();
@@ -23,31 +22,14 @@ const Home: NextPage = () => {
     }
   }, [session]);
 
-  const [userTracks, setUserTracks] = useState<any>(null);
+  const [userTopTracks, setUserTopTracks] = useState<any>(null);
   useEffect(() => {
     if (session) {
-      fetch(
-        "https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=long_term",
-        {
-          headers: { Authorization: `Bearer ${session?.accessToken}` },
-        }
-      )
+      fetch("https://api.spotify.com/v1/me/top/tracks", {
+        headers: { Authorization: `Bearer ${session?.accessToken}` },
+      })
         .then((value) => value.json())
-        .then((val) => setUserTracks(val));
-    }
-  }, [session]);
-
-  const [userSavedTracks, setUserSavedTracks] = useState<any>(null);
-  useEffect(() => {
-    if (session) {
-      fetch(
-        "https://api.spotify.com/v1/me/tracks",
-        {
-          headers: { Authorization: `Bearer ${session?.accessToken}` },
-        }
-      )
-        .then((value) => value.json())
-        .then((val) => setUserSavedTracks(val));
+        .then((val) => setUserTopTracks(val));
     }
   }, [session]);
 
@@ -57,8 +39,24 @@ const Home: NextPage = () => {
         <img src={session.user?.image ?? ""} alt="user image" />
         <h2>{session.user?.name}</h2>
       </div> */}
-      {userTracks && <AlbumGrid albums={userTracks.items} />}
-      <UserCard />
+      <div className={style.section}>
+        <AlbumGrid />
+        <SideBar />
+        {userTopTracks && (
+          <div>
+            <h1>Top Músicas</h1>
+            {userTopTracks.items.map((track) => {
+              return (
+                <div key={track.id}>
+                  <img src={track.album.images[2].url} alt="" />
+                  <h3>{track.name}</h3>
+                  <p>{track.artists.map((artist) => artist.name).join(",")}</p>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
     </div>
   ) : (
     <HomePage />

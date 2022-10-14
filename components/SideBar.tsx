@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import UserCardStyle from "../styles/UserCard.module.scss";
 import { Button } from "./Button";
-export const UserCard = () => {
+export const SideBar = () => {
   const { data: session } = useSession();
   const [userData, setUserData] = useState<any>(null);
 
@@ -18,17 +18,23 @@ export const UserCard = () => {
   }, [session]);
   return (
     session && (
-      <div className={UserCardStyle.Card}>
-        <div>
-          <img
-            className={UserCardStyle.Avatar}
-            src={session.user?.image as string}
-            alt=""
-          />
+      <div className={UserCardStyle.SideContainer}>
+        <div className={UserCardStyle.Side}>
+          <div className={UserCardStyle.UserInfo}>
+            <div>
+              <img
+                className={UserCardStyle.Avatar}
+                src={session.user?.image as string}
+                alt=""
+              />
+            </div>
+            <div>
+              <p>logado como:</p>
+              <h1>{session.user?.name}</h1>
+            </div>
+          </div>
+          <Button onClickFunc={() => signOut()}>Sair</Button>
         </div>
-        <p>logado como:</p>
-        <h1>{session.user?.name}</h1>
-        <Button onClickFunc={() => signOut()}>Sair</Button>
       </div>
     )
   );

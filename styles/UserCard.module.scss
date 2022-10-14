@@ -4,18 +4,33 @@ $base: 16px;
 $padding: $base;
 $radius: $base;
 
-.Avatar {
-  border-radius: 100%;
-  max-height: 150px;
+.SideContainer {
+  width: 40%;
+  position: sticky;
+  top: 0;
+  left: 0;
+  min-height: 100vh;
+  max-height: 100vh;
 }
 
-.Card {
-  max-width: 30%;
+.Side {
+  height: 100%;
   background-color: $spotify-black;
   padding: $padding * 2;
   border-radius: $radius;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+.UserInfo {
+  display: flex;
   align-items: center;
+
+  .Avatar {
+    border-radius: 100%;
+    max-height: 150px;
+    margin: 0 10px;
+  }
 }

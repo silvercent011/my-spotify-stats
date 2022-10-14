@@ -15,6 +15,7 @@ const Home: NextPage = () => {
   useEffect(() => {
     if (session) {
       fetch("https://api.spotify.com/v1/me/top/artists", {
+        // @ts-ignore
         headers: { Authorization: `Bearer ${session?.accessToken}` },
       })
         .then((value) => value.json())
@@ -26,6 +27,7 @@ const Home: NextPage = () => {
   useEffect(() => {
     if (session) {
       fetch("https://api.spotify.com/v1/me/top/tracks", {
+        // @ts-ignore
         headers: { Authorization: `Bearer ${session?.accessToken}` },
       })
         .then((value) => value.json())
@@ -45,12 +47,12 @@ const Home: NextPage = () => {
         {userTopTracks && (
           <div>
             <h1>Top Músicas</h1>
-            {userTopTracks.items.map((track) => {
+            {userTopTracks.items.map((track: any) => {
               return (
                 <div key={track.id}>
                   <img src={track.album.images[2].url} alt="" />
                   <h3>{track.name}</h3>
-                  <p>{track.artists.map((artist) => artist.name).join(",")}</p>
+                  <p>{track.artists.map((artist: any) => artist.name).join(",")}</p>
                 </div>
               );
             })}

@@ -11,6 +11,7 @@ export const AlbumGrid = () => {
       fetch(
         "https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=long_term",
         {
+          // @ts-ignore
           headers: { Authorization: `Bearer ${session?.accessToken}` },
         }
       )
@@ -22,7 +23,7 @@ export const AlbumGrid = () => {
   return (
     userTracks && (
       <div className={AlbumGridStyles.AlbumGrid}>
-        {userTracks.items.map((album) => {
+        {userTracks.items.map((album:any) => {
           return <img key={album.key} src={album.album.images[1].url} />;
         })}
       </div>

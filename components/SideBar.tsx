@@ -10,6 +10,7 @@ export const SideBar = () => {
   useEffect(() => {
     if (session) {
       fetch("https://api.spotify.com/v1/me", {
+        // @ts-ignore
         headers: { Authorization: `Bearer ${session.accessToken}` },
       })
         .then((value) => value.json())

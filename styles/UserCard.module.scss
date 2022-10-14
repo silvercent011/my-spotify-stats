@@ -1,0 +1,21 @@
+@import "colors";
+
+$base: 16px;
+$padding: $base;
+$radius: $base;
+
+.Avatar {
+  border-radius: 100%;
+  max-height: 150px;
+}
+
+.Card {
+  max-width: 30%;
+  background-color: $spotify-black;
+  padding: $padding * 2;
+  border-radius: $radius;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

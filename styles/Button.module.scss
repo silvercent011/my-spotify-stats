@@ -1,0 +1,25 @@
+@import "colors";
+$base: 24px;
+$padding: $base;
+$radius: $base;
+.green_btn {
+  $bgColor: $spotify-green;
+
+  background-color: $bgColor;
+  border-radius: $radius;
+  border: none;
+  color: $spotify-white;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: $padding/2 $padding;
+  width: 100%;
+
+  &:hover {
+    background-color: darken($bgColor, 5);
+  }
+  
+  &:active {
+    background-color: darken($bgColor, 10);
+  }
+}

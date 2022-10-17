@@ -1,5 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
+import { Track } from "../interfaces/Track";
 import AlbumGridStyles from "../styles/AlbumGrid.module.scss";
 
 export const AlbumGrid = () => {
@@ -21,10 +23,11 @@ export const AlbumGrid = () => {
   }, [session]);
 
   return (
-    userTracks && (
+    userTracks &&
+    session && (
       <div className={AlbumGridStyles.AlbumGrid}>
-        {userTracks.items.map((album:any) => {
-          return <img key={album.key} src={album.album.images[1].url} />;
+        {userTracks.items.map((track: Track) => {
+          return <img key={track.id} src={track.album.images[1].url} alt="" />;
         })}
       </div>
     )

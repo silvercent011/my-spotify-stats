@@ -1,0 +1,30 @@
+@import "colors";
+
+.Container { 
+    background-color: opacify($spotify-black, 0);
+    padding: 2rem;
+    margin: 2rem;
+    border-radius: 16px;
+}
+
+.Heading {
+ font-size: 3rem;
+}
+
+.Content {
+
+}
+
+.cardBody {
+    background-color: lighten($spotify-black, 10);
+    padding: 16px;
+    margin: 8px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.Image {
+    border-radius: 6px;
+    margin-right: 16px;
+}
